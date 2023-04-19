@@ -43,28 +43,18 @@ projectRoute.post(
     "/:id/message",
     protect,
     asyncHandler(async (req,res)=>{
-        const {rating,comment}=req.body
-        const product =await project.findById(req.params.id);
-        if(product){
-            const alreadyReviewed = product.reviews.find(
+        const project =await project.findById(req.params.id);
+        if(project){
+            const alreadyReviewed = project.messags.find(
                 (r) => r.user.toString()=== req.user._id.toString()
             )
         if (alreadyReviewed) {
             res.status(400);
             throw new Error("Product already Reviewed");
         }
-        const review={
-            name:req.user.name,
-            rating:Number(rating),
-            comment,
-            user:req.user._id,
-        };
-        product.reviews.push(review);
-        product.numReviews=product.reviews.length;
-        product.rating =
-                product.reviews.reduce((acc,item)=>item.rating + acc, 0) /
-                product.reviews.length;
-                await product.save()
+
+        project.messags.push(review);
+        await project.save()
 
 
         

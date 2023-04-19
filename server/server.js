@@ -5,7 +5,6 @@ import ImportData from "./Dataimport.js";
 import projectRoute from "./Routes/projectRoutes.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 import userRoute from "./Routes/UserRoutes.js";
-import orderRouter from "./Routes/orderRoutes.js";
 dotenv.config()
 const app =express();
 connectDatabase();
