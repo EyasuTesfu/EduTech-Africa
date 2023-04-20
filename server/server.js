@@ -1,24 +1,43 @@
 import express from "express";
 import dotenv from "dotenv";
-import connectDatabase from "./config/MongoDb.js";
-import ImportData from "./Dataimport.js";
+import mongoose from "mongoose";
+
+import ImportData from "./DataImport.js";
+dotenv.config();
+const app = express();
+
+app.use(express.json());
+
+try {
+  mongoose
+    .connect(
+      "mongodb+srv://book:IhkVzXYiU7iNzCDu@shoeshop.hywvb8u.mongodb.net/bookDatabase?retryWrites=true&w=majority",
+      {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      }
+    )
+    .then(() => {
+      console.log("Database Connected");
+    });
+} catch (error) {
+  console.log("Error connecting to Database");
+}
+
 import projectRoute from "./Routes/projectRoutes.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 import userRoute from "./Routes/UserRoutes.js";
-dotenv.config()
-const app =express();
-connectDatabase();
-app.use(express.json())
-app.use("/api/import",ImportData)
-app.use("/api/products",projectRoute)
-app.use("/api/users",userRoute)
 
-app.use(notFound)
-app.use(errorHandler)
+app.use("/api/import", ImportData);
+app.use("/api/products", projectRoute);
+app.use("/api/users", userRoute);
 
-app.get("/",(req,res)=>{
-    res.send("API is Running...");
-})
+app.use(notFound);
+app.use(errorHandler);
 
-const PORT=process.env.PORT ||1000;
-app.listen(PORT,console.log(`server run in port ${PORT}`));
+app.get("/", (req, res) => {
+  res.send("API is Running...");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, console.log(`server run in port ${PORT}`));
