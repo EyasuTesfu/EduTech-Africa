@@ -1,3 +1,4 @@
+import heroImg from "../assets/img/hero-img-4.png";
 import Project from "../components/Project";
 export default function LandingPage() {
   return (
@@ -30,7 +31,7 @@ export default function LandingPage() {
               width="500px"
               data-aos="fade-left"
             >
-              <img src="assets/img/hero-img-4.png" class="img-fluid" alt="" />
+              <img src={heroImg} class="img-fluid" alt="" />
             </div>
           </div>
         </div>

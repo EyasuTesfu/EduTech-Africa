@@ -1,3 +1,4 @@
+import teamPhotot from "../assets/img/team-bg.jpg";
 export default function Project() {
   return (
     <div class="container py-3">
@@ -6,7 +7,7 @@ export default function Project() {
           <div class="row project">
             <div class="col-md-4 bg-intro">
               <img
-                src="./assets/img/team-bg.jpg"
+                src={teamPhotot}
                 style={{ "max-width": "450px" }}
                 alt=""
                 srcset=""
