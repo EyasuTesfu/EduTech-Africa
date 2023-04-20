@@ -1,24 +1,31 @@
 import React, { useState } from "react";
-import { Row, Col, Form, Button, Image } from "react-bootstrap";
+import { marginRight, Col, Row, Form, Button, Image } from "react-bootstrap";
 
-const LoginForm = () => {
+const SignupPage = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const response = await fetch("/api/login", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await response.json();
@@ -32,7 +39,7 @@ const LoginForm = () => {
       setLoading(false);
     } catch (error) {
       console.error(error);
-      setError("An error occurred while logging in. Please try again later.");
+      setError("An error occurred while signing up. Please try again later.");
       setLoading(false);
     }
   };
@@ -70,7 +77,6 @@ const LoginForm = () => {
               </span>
             </a>
           </h1>
-
           <Form
             style={{
               width: "80%",
@@ -78,6 +84,15 @@ const LoginForm = () => {
             }}
             onSubmit={handleSubmit}
           >
+            <Form.Group>
+              <Form.Label>Enter your name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group>
               <Form.Label>Enter your email</Form.Label>
               <Form.Control
@@ -96,8 +111,17 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Confirm your password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <br />
+            </Form.Group>
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <br></br>
             <Button type="submit" disabled={loading}>
               Submit
             </Button>
@@ -108,4 +132,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupPage;
