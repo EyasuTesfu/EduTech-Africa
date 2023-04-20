@@ -42,9 +42,9 @@ const LoginForm = () => {
       <Row>
         <Col lg={6}>
           <Image
-            src={process.env.PUBLIC_URL + "assets/img/features-1.png"}
+            src={process.env.PUBLIC_URL + "assets/img/hero-img-2.png"}
             thumbnail
-            style={{ border: "none", marginLeft: "10%" }}
+            style={{ border: "none", marginLeft: "10%", marginTop: "10%" }}
           />
         </Col>
         <Col lg={6} style={{ marginTop: "10%" }}>
