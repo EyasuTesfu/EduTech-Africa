@@ -1,39 +1,43 @@
+import { Outlet, Link } from "react-router-dom";
+import Footer from "./Footer";
+
 export default function NavBar() {
   return (
-    <header id="header" class="fixed-top d-flex align-items-center shadow-sm">
-      <div class="container d-flex align-items-center">
-        <div class="logo me-auto">
-          <h4>
-            <a href="index.html">
-              {" "}
-              <span style={{ color: "#444444" }}>EduTech</span> Africa
-            </a>
-          </h4>
-        </div>
+    <>
+      <header id="header" class="fixed-top d-flex align-items-center shadow-sm">
+        <div class="container d-flex align-items-center">
+          <div class="logo me-auto">
+            <h4>
+              <a href="index.html">
+                {" "}
+                <span style={{ color: "#444444" }}>EduTech</span> Africa
+              </a>
+            </h4>
+          </div>
 
-        <nav id="navbar" class="navbar order-last order-lg-0">
-          <ul>
-            <li>
-              <a class="nav-link scrollto active" href="#hero">
-                Home
-              </a>
-            </li>
-            <li>
-              <a class="nav-link scrollto" href="#services">
-                About
-              </a>
-            </li>
-            <li>
-              <a class="nav-link scrollto" href="#services">
-                Explore
-              </a>
-            </li>
-            <li>
-              <a class=" scrollto common-btn " href="#portfolio">
-                Log In
-              </a>
-            </li>
-            {/* <li class="dropdown">
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li>
+                <a class="nav-link scrollto active" href="#hero">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a class="nav-link scrollto" href="#services">
+                  About
+                </a>
+              </li>
+              <li>
+                <a class="nav-link scrollto" href="#services">
+                  Explore
+                </a>
+              </li>
+              <li>
+                <Link class=" scrollto common-btn " to="/login">
+                  Log In
+                </Link>
+              </li>
+              {/* <li class="dropdown">
               <a href="#">
                 <span>
                   <i class="bx bxs-user" style={{ "font-size": "larger" }}></i>
@@ -80,12 +84,15 @@ export default function NavBar() {
                 </li>
               </ul>
             </li> */}
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
 
-        <div class="header-social-links d-flex align-items-center"></div>
-      </div>
-    </header>
+          <div class="header-social-links d-flex align-items-center"></div>
+        </div>
+      </header>
+      <Outlet />
+      <Footer />
+    </>
   );
 }

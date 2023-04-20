@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import heroImg from "../assets/img/hero-img-4.png";
 import Project from "../components/Project";
 export default function LandingPage() {
@@ -21,9 +22,9 @@ export default function LandingPage() {
                   innovative projects that have the potential to make a real
                   difference.
                 </h5>
-                <a href="#about" class="btn-get-started scrollto">
+                <Link to="new" class="btn-get-started scrollto">
                   create A Project
-                </a>
+                </Link>
               </div>
             </div>
             <div

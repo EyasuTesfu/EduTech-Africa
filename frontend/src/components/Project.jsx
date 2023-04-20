@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import teamPhotot from "../assets/img/team-bg.jpg";
 export default function Project() {
   return (
     <div class="container py-3">
-      <a href="" style={{ color: "#444444" }}>
+      <Link to="/project" href="" style={{ color: "#444444" }}>
         <div class="card">
           <div class="row project">
             <div class="col-md-4 bg-intro">
@@ -49,7 +50,7 @@ export default function Project() {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
